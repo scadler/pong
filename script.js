@@ -88,8 +88,10 @@ function update(){
         //ball has hit top or bottom
         ball.velocityY = - ball.velocityY;
     }
+    //computerLevel is difficult, higher=harder, 
+    let computerLevel = 0.05
+    comp.y += (ball.y - (comp.y + comp.height/2)) * computerLevel
     // this is saying if (ball.x < canvas.width/2 (on the right side)){ paddle = user} else {paddle = comp}
-    //30:46
     let paddle = (ball.x < canvas.width/2) ? user : comp;
     if( collision(ball,paddle) ){
         //need to find point of impact so rebound angle can be calculated
@@ -113,9 +115,8 @@ function update(){
 }
 function render(){
 drawRect(0, 0, canvas.width, canvas.height, "black");
-drawText(0, 40, 60,  "White");
-drawText(user.score, canvas.width/4, canvas.hieght/5, "White");
-drawText(comp.score, 3*canvas.width/4, canvas.hieght/5, "White");
+drawText(user.score, canvas.width/4, canvas.height/5, "White");
+drawText(comp.score, 3*canvas.width/4, canvas.height/5, "White");
 drawNet();
 //user & comp paddles
 drawRect(user.x, user.y, user.width, user.height, user.color);
