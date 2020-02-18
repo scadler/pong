@@ -14,14 +14,13 @@ function drawCircle(x, y, r, color){
     context.closePath();
     context.fill();
 }
-//14:40
 function drawText(text,x, y, color){
     context.fillStyle = color;
-    context.font = "75px fantasy";
+    context.font = "75px arial";
     context.fillText(text, x, y);
 }
 function drawNet(){
-    for(let i = 0; i <= canvas.height; i+=15){
+    for(let i = 0; i <= canvas.height; i+=23){
         drawRect(net.x, net.y + i , net.width, net.height, net.color);
     }
 }
@@ -39,7 +38,7 @@ function collision(ball, paddle){
 function resetBall(){
     ball.x = canvas.width/2;
     ball.y = canvas.height/2;
-    ball.speed = 5;
+    ball.speed = 7;
     ball.velocityX = -ball.velocityX
 }
 function movePaddle(event){
@@ -50,33 +49,33 @@ function movePaddle(event){
 const user = {
     x : 0,
     y : (canvas.height/2)-50,
-    width : 10,
-    height : 100,
+    width : 15,
+    height : 150,
     color : "White",
     score : 0,
 }
 const comp = {
-    x :  canvas.width - 10,
+    x :  canvas.width - 15,
     y : (canvas.height/2)-50,
-    width : 10,
-    height : 100,
+    width : 15,
+    height : 150,
     color : "White",
     score : 0,
 }
 const net = {
     x : canvas.width/2 - 2/2,
     y : 0,
-    width : 2,
-    height : 10,
+    width : 3,
+    height : 15,
     color : "White",
 }
 const ball = {
     x : canvas.width/2,
     y : canvas.height/2,
-    radius : 10,
-    speed : 5,
-    velocityX : 5,
-    velocityY : 5,
+    radius : 15,
+    speed : 7,
+    velocityX : 7,
+    velocityY : 7,
     color : "White",
 }
 const framesPerSecond = 50;
@@ -103,7 +102,7 @@ function update(){
         ball.velocityX = direction * ball.speed * Math.cos(angleRadian)
         ball.velocityY = direction * ball.speed * Math.sin(angleRadian)
         //the ball moves faster every rebound
-        ball.speed += 0.1;
+        ball.speed += 0.2;
     }
     if(ball.x - ball.radius < 0){
         comp.score++;
@@ -129,5 +128,4 @@ function game(){
     update();
 }
 setInterval(game, 1000/framesPerSecond);
-
 canvas.addEventListener("mousemove", movePaddle);
