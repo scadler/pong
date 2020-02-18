@@ -88,7 +88,7 @@ function update(){
         ball.velocityY = - ball.velocityY;
     }
     //computerLevel is difficult, higher=harder, 
-    let computerLevel = 0.05
+    let computerLevel = 0.08
     comp.y += (ball.y - (comp.y + comp.height/2)) * computerLevel
     // this is saying if (ball.x < canvas.width/2 (on the right side)){ paddle = user} else {paddle = comp}
     let paddle = (ball.x < canvas.width/2) ? user : comp;
